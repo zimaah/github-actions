@@ -18,6 +18,9 @@ jobs:
       - name: Listing SSH folder
         run: ls -la ~/.ssh/
 
+      - name: cat known_hosts
+        run: cat ~/.ssh/known_hosts
+
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST_IP }} >> ~/.ssh/known_hosts
 
