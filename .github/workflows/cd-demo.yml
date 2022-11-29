@@ -1,25 +1,25 @@
 name: GitHub Actions CD Demo
 run-name: ${{ github.actor }} is testing out CD with self-hosted server
 on: [workflow_dispatch]
-  jobs:
-    GH-Actions-CD-Demo
-      runs-on: ubuntu-latest
-      steps:
-        # cloning repo...
-        - name: Cloning repo...
-          uses: actions/checkout@v3
+jobs:
+  GH-Actions-CD-Demo
+    runs-on: ubuntu-latest
+    steps:
+      # cloning repo...
+      - name: Cloning repo...
+        uses: actions/checkout@v3
 
-        - name: Installing SSH Key
-          uses: shimataro/ssh-key-action@v2
-          with:
-            key: ${{ secrets.SSH_PRIVATE_KEY_TEST_CD }}
-            known_hosts: 'placeholder'
+      - name: Installing SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY_TEST_CD }}
+          known_hosts: 'placeholder'
 
-        - name: Adding Known Hosts
-          run: ssh-keyscan -p ${{ secrets.SSH_HOST_PORT_TEST_CD }} -H ${{ secrets.SSH_HOST_IP_TEST_CD }} >> ~/.ssh/known_hosts
+      - name: Adding Known Hosts
+        run: ssh-keyscan -p ${{ secrets.SSH_HOST_PORT_TEST_CD }} -H ${{ secrets.SSH_HOST_IP_TEST_CD }} >> ~/.ssh/known_hosts
 
-        - name: PWD
-          run: pwd
+      - name: PWD
+        run: pwd
 
-        - name: Deploying with rsync
-          run: echo "Deplying with rsync..."
+      - name: Deploying with rsync
+        run: echo "Deplying with rsync..."
