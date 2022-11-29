@@ -15,6 +15,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY_TEST_CD }}
           known_hosts: 'placeholder'
 
+      - name: Listing SSH folder
+        run: ls -la ~/.ssh/
+
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST_IP }} >> ~/.ssh/known_hosts
 
